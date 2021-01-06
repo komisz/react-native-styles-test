@@ -4,44 +4,65 @@ import {
   View,
   Text,
   StatusBar,
-  TouchableOpacity,
-  Alert
+  TouchableOpacity
 } from 'react-native'
-import { getColor } from 'tailwind'
-import styles from '../Home/Home.style'
+import { tailwind } from 'tailwind'
 
 import Icon from 'react-native-vector-icons/Ionicons'
+import { ScrollView } from 'react-native-gesture-handler'
+
+function TopMenu() {
+  return (
+    <View
+      style={tailwind(
+        'z-10 left-0 h-nav w-full flex-row items-center justify-between px-6 bg-white'
+      )}>
+      <Text>hambi</Text>
+      <Text>3pont</Text>
+    </View>
+  )
+}
+
+function ContentSpacer() {
+  return (
+    <View style={tailwind('h-nav')}>
+      <Text>spacer</Text>
+    </View>
+  )
+}
+
+function AvatarContent() {
+  return (
+    <View style={tailwind('w-full px-6 h-1/3 bg-grey-light')}>
+      <Text>Avatar content</Text>
+    </View>
+  )
+}
+
+function MainContent() {
+  return (
+    <View style={tailwind('w-full px-6 h-2/3 bg-black')}>
+      <Text>Main content</Text>
+    </View>
+  )
+}
 
 const Tailwind = ({ navigation }) => {
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor={'#f9f9f9'} />
-      <SafeAreaView style={'white flex-none'} />
-      <SafeAreaView style={styles.SafeAreaView2}>
-        <View style={styles.outerWrapper}>
-          <Icon
-            name={'bandage-outline'}
-            size={100}
-            color={getColor('blue-dark')}
-          />
-          <View>
-            <TouchableOpacity onPress={() => {}} style={styles.buttonStyle}>
-              <Text style={styles.text}>
-                this is{' '}
-                <Text
-                  style={{
-                    fontWeight: 'bold',
-                    color: getColor('blue-light')
-                  }}>
-                  {' '}
-                  TAILWIND{' '}
-                </Text>{' '}
-                screen
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </SafeAreaView>
+      <View style={tailwind('bg-blue-light h-full z-0')}>
+        <SafeAreaView />
+        <TopMenu />
+      </View>
+      <ScrollView
+        contentContainerStyle={tailwind('items-center h-full')}
+        style={tailwind('absolute top-0 left-0 w-full h-full bg-transparent')}>
+        <SafeAreaView />
+        <ContentSpacer />
+        <AvatarContent />
+        <MainContent />
+      </ScrollView>
     </>
   )
 }
